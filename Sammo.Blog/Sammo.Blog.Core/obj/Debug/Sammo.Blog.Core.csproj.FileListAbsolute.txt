@@ -1,0 +1,16 @@
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Core.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Core.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\obj\Debug\Sammo.Blog.Core.csprojResolveAssemblyReference.cache
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\obj\Debug\Sammo.Blog.Core.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\obj\Debug\Sammo.Blog.Core.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\AutoMapper.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\AutoMapper.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Autofac.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Common.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Repository.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\EntityFramework.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Common.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Repository.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Autofac.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\EntityFramework.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\zh-Hans\EntityFramework.resources.dll

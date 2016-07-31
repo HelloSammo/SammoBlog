@@ -1,0 +1,16 @@
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\Sammo.Blog.Repository.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\Sammo.Blog.Repository.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\obj\Debug\Sammo.Blog.Repository.csprojResolveAssemblyReference.cache
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\obj\Debug\Sammo.Blog.Repository.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\obj\Debug\Sammo.Blog.Repository.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\Sammo.Blog.Common.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\Sammo.Blog.Common.pdb
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\Sammo.Blog.Repository.dll.config
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\EntityFramework.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\EntityFramework.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\obj\Debug\Sammo.Blog.Repository.Migrations.InitDatabase.resources
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Repository\obj\Debug\Sammo.Blog.Repository.csproj.GenerateResource.Cache
