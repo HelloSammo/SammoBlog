@@ -15,24 +15,25 @@ namespace Sammo.Blog.Repository.Entities
         public CommentEntity()
         {
             Id = Guid.NewGuid().ToString();
-            CreationTime = DateTime.Now;
+            CreateTime = DateTime.Now;
         }
         [Key]
         public string Id { get; set; }
 
-        public DateTime CreationTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
         [Required, StringLength(BlogConstants.Validation.CommentLength)]
         public string Content { get; set; }
 
+        [Required]
         [StringLength(BlogConstants.Validation.GuidStringLength)]
         public string BlogId { get; set; }
 
         [StringLength(BlogConstants.Validation.GuidStringLength)]
-        public string UserId { get; set; }
+        public string AuthorId { get; set; }
 
-        public BlogEntity Blog { get; set; }
+        public virtual BlogEntity Blog { get; set; }
 
-        public UserEntity User { get; set; }
+        public virtual UserEntity Author { get; set; }
     }
 }

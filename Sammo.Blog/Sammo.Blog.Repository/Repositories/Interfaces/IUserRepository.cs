@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories.Interfaces
 {
-    public interface IUserRepository : IRepository<UserEntity>
+    public interface IUserRepository 
     {
+        Task<bool> AddAsync(UserEntity user);
         Task<UserEntity> GetUserByIdAsync(string id);
 
         Task<IEnumerable<UserEntity>> GetComfirmedUsersAsync();
@@ -19,6 +20,8 @@ namespace Sammo.Blog.Repository.Repositories.Interfaces
 
         Task<bool> IsUserNameExistsAsync(string userName);
 
-        Task<UserEntity> GetUserByUserNameAsync(string userNameOrEmail);
+        Task<UserEntity> GetUserByUserNameOrEmailAsync(string userNameOrEmail);
+
+        Task<UserEntity> GetUserByUserNameAsync(string userName);
     }
 }

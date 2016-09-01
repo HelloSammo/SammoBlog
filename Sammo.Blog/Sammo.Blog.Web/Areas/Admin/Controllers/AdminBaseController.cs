@@ -1,17 +1,27 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.Owin;
-using Sammo.Blog.Common;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Sammo.Blog.Repository.Entities;
+using Sammo.Blog.Repository.EntityFramework;
+using Sammo.Blog.Repository.Repositories;
+using Sammo.Blog.Repository.Repositories.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Sammo.Blog.Web.Areas.Admin.Controllers
 {
-    public class AdminBaseController: Controller
+    [RouteArea("Admin")]
+    public class AdminBaseController : Controller
     {
+        private readonly IUserRepository _repository;
+
+        //public AdminBaseController() { }
+        public AdminBaseController(IUserRepository repository)
+        {
+            _repository = repository;
+        }
 
         protected bool UserIsAuthenticated
         {
@@ -20,7 +30,15 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
                 return System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             }
         }
+        
 
+        protected string UserId
+        {
+            get
+            {
+                return UserIsAuthenticated ? User.Identity.GetUserId() : null;
+            }
+        }
         protected string UserName
         {
             get
@@ -29,60 +47,43 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
             }
         }
 
+        protected UserEntity CurrentUser
+        {
+            get
+            {
+                return GetCurrentUser().Result;
+            }
+        }
+
+        protected  Task<UserEntity> GetCurrentUser()
+        {
+            return   _repository.GetUserByUserNameAsync(UserName);
+        }
+        
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //private IOwinContext m_OwinContext;
-        //public IOwinContext OwinContext
+        //protected override  JsonResult Json(object data,Encoding contentEncoding, string contentType= "application/json"
+        //    , JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
         //{
-        //    get
+        //    return new JsonResult
         //    {
-        //        if (this.m_OwinContext == null)
-        //        {
-        //            this.m_OwinContext = base.Request.GetOwinContext();
-        //        }
-        //        return this.m_OwinContext;
-        //    }
-        //    set
-        //    {
-        //        Requires.NotNull<IOwinContext>(value, "value");
-        //        this.m_OwinContext = value;
-        //    }
-        //}
-
-        //public TUser User
-        //{
-        //    get
-        //    {
-        //        if (this.m_User == null)
-        //        {
-        //            this.m_User = base.OwinContext.GetAppUser<TUser>();
-        //        }
-        //        return this.m_User;
-        //    }
-        //    set
-        //    {
-        //        if (value == null)
-        //        {
-        //            throw new ArgumentNullException("value");
-        //        }
-        //        base.OwinContext.SetAppUser<TUser>(value);
-        //        this.m_User = value;
-        //    }
+        //        Data = data,
+        //        ContentEncoding = contentEncoding,
+        //        ContentType = contentType,
+        //        JsonRequestBehavior = behavior
+        //    };
         //}
 
 
+        protected new JsonResult Json(object data, string contentType = "application/json"
+            , JsonRequestBehavior behavior = JsonRequestBehavior.AllowGet)
+        {
+            return new JsonResult
+            {
+                Data = data,
+                ContentType = contentType,
+                JsonRequestBehavior = behavior
+            };
+        }
     }
 }

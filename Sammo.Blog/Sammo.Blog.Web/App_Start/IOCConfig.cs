@@ -5,6 +5,7 @@ using Sammo.Blog.Core.Interfaces;
 using Sammo.Blog.Core.Services;
 using Sammo.Blog.Repository.Repositories;
 using Sammo.Blog.Repository.Repositories.Interfaces;
+using Sammo.Blog.Web.Areas.Admin.Controllers;
 using System.Web.Mvc;
 
 namespace Sammo.Blog.Web.App_Start
@@ -25,8 +26,13 @@ namespace Sammo.Blog.Web.App_Start
             builder.RegisterType<CommentRepository>().As<ICommentRepository>();
             builder.RegisterType<TagRepository>().As<ITagRepository>();
             builder.RegisterType<BlogRepository>().As<IBlogRepository>();
+            //builder.RegisterType<BlogTagMapRepository>().As<IBlogTagMapRepository>();
+
             //注册Service
             builder.RegisterType<AccountService>().As<IAccountService>();
+            builder.RegisterType<CategoryService>().As<ICategoryService>();
+            builder.RegisterType<BlogService>().As<IBlogService>();
+            builder.RegisterType<TagService>().As<ITagService>();
 
 
             var container = builder.Build();

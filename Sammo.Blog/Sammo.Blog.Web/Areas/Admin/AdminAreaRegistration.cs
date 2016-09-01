@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Sammo.Blog.Web.Areas.Admin
 {
@@ -17,7 +18,8 @@ namespace Sammo.Blog.Web.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { controller= "Home",action = "Index", id = UrlParameter.Optional }
+                new { controller= "Home",action = "Index", id = UrlParameter.Optional },
+                new string[] { "Sammo.Blog.Web.Areas.Admin.Controllers" }
             );
         }
     }

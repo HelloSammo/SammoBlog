@@ -1,11 +1,14 @@
-﻿using Sammo.Blog.Common;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Sammo.Blog.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Sammo.Blog.Repository.Entities
 {
@@ -15,16 +18,17 @@ namespace Sammo.Blog.Repository.Entities
         public UserEntity()
         {
             Id = Guid.NewGuid().ToString();
-            CreationTime = DateTime.Now;
+            CreateTime = DateTime.Now;
             Role = UserRole.User;
             IsConfirmed = false;
             IsLocked = false;
         }
         [Key]
-        public string Id { get; set; }
-
+        public  string Id { get; set; }
         [Required, StringLength(BlogConstants.Validation.UserNameLength)]
-        public string UserName { get; set; }
+        public  string UserName { get; set; }
+        [Required, StringLength(BlogConstants.Validation.EmailLength)]
+        public  string Email { get; set; }
 
         [Required, StringLength(BlogConstants.Validation.PasswordLength)]
         public string Password { get; set; }
@@ -34,8 +38,6 @@ namespace Sammo.Blog.Repository.Entities
 
         public UserRole Role { get; set; }
 
-        [Required, StringLength(BlogConstants.Validation.EmailLength)]
-        public string Email { get; set; }
 
         [StringLength(BlogConstants.Validation.GuidStringLength)]
         public string AvatarId { get; set; }
@@ -44,7 +46,7 @@ namespace Sammo.Blog.Repository.Entities
 
         public bool IsLocked { get; set; }
 
-        public DateTime CreationTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
         public virtual ICollection<BlogEntity> Blogs { get; set; }
 

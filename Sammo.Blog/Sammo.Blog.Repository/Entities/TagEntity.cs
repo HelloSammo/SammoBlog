@@ -15,7 +15,7 @@ namespace Sammo.Blog.Repository.Entities
         public TagEntity()
         {
             Id = Guid.NewGuid().ToString();
-            CreationTime = DateTime.Now;
+            CreateTime = DateTime.Now;
         }
         [Key]
         public string Id { get; set; }
@@ -23,19 +23,16 @@ namespace Sammo.Blog.Repository.Entities
         [Required, StringLength(BlogConstants.Validation.TagNameLength)]
         public string Name { get; set; }
 
-        public DateTime CreationTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
         [StringLength(BlogConstants.Validation.TagDescriptionLength)]
         public string Description { get; set; }
 
         [StringLength(BlogConstants.Validation.GuidStringLength)]
-        public string UserId { get; set; }
+        public string AuthorId { get; set; }
 
-        [StringLength(BlogConstants.Validation.GuidStringLength)]
-        public string BlogId { get; set; }
+        public virtual UserEntity Author { get; set; }
 
-        public virtual UserEntity User { get; set; }
-
-        public virtual BlogEntity Blog { get; set; }
+        public virtual ICollection<BlogEntity> Blogs { get; set; }
     }
 }

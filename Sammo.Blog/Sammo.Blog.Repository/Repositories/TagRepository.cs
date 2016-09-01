@@ -1,18 +1,53 @@
-﻿using Sammo.Blog.Repository.Entities;
+﻿using Sammo.Blog.Common;
+using Sammo.Blog.Repository.Entities;
 using Sammo.Blog.Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories
 {
-    public class TagRepository : DbContextService,ITagRepository
+    public class TagRepository : DbContextService, ITagRepository
     {
-        public Task<bool> AddAsync(TagEntity t)
+        public async Task<bool> AddAsync(TagEntity tag)
         {
-            throw new NotImplementedException();
+            Requires.NotNull(tag, nameof(tag));
+            var result = DbContext.Set<TagEntity>().Add(tag);
+            if (result != null)
+            {
+                //DbContext.Entry<TagEntity>(result).State = EntityState.Detached;
+                await DbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<TagEntity> AddTagAsync(TagEntity tag)
+        {
+            Requires.NotNull(tag, nameof(tag));
+            var result = DbContext.Set<TagEntity>().Add(tag);
+            if (result == null)
+                return null;
+
+            await DbContext.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<bool> BulkAddAsync(IEnumerable<TagEntity> tags)
+        {
+            Requires.NotNull(tags, nameof(tags));
+            foreach (var tag in tags)
+            {
+                if (DbContext.Set<TagEntity>().Add(tag) != null)
+                    await DbContext.SaveChangesAsync();
+
+                return false;
+            }
+            return true;
         }
 
         public Task<bool> DeleteAsync(TagEntity t)
@@ -20,14 +55,29 @@ namespace Sammo.Blog.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TagEntity>> GetAllAsync()
+        public async Task<IEnumerable<TagEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await DbContext.Set<TagEntity>().OrderBy(t => t.CreateTime).ToListAsync();
+        }
+
+        public  Task<TagEntity> GetTagByNameAsync(string tagName)
+        {
+            return  DbContext.Set<TagEntity>().FirstOrDefaultAsync(t => t.Name == tagName);
+        }
+
+        public  Task<bool> IsExistsAsync(string name)
+        {
+            return  DbContext.Set<TagEntity>().AnyAsync(t => t.Name == name);
         }
 
         public Task<bool> UpdateAsync(TagEntity t)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<TagEntity>> QueryAsync(Expression<Func<TagEntity, bool>> filter)
+        {
+            return await DbContext.Set<TagEntity>().AsNoTracking().Where(filter).ToListAsync();
         }
     }
 }

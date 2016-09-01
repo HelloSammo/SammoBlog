@@ -4,8 +4,6 @@ using Sammo.Blog.Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories
@@ -66,10 +64,16 @@ namespace Sammo.Blog.Repository.Repositories
             return DbContext.Set<UserEntity>().AnyAsync(u => u.UserName == userName);
         }
 
-        public Task<UserEntity> GetUserByUserNameAsync(string userNameOrEmail)
+        public Task<UserEntity> GetUserByUserNameOrEmailAsync(string userNameOrEmail)
         {
             Requires.NotNullOrEmpty(userNameOrEmail, nameof(userNameOrEmail));
             return DbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserName == userNameOrEmail || u.Email == userNameOrEmail);
+        }
+
+        public Task<UserEntity> GetUserByUserNameAsync(string userName)
+        {
+            Requires.NotNullOrEmpty(userName, nameof(userName));
+            return DbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserName == userName);
         }
     }
 }

@@ -13,12 +13,18 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Core.Services
 {
-    public class AccountService: DbContextService,IAccountService
+    public class AccountService: IAccountService
     {
         private readonly IUserRepository _repository ;
         public AccountService(IUserRepository repository)
         {
             _repository = repository;
+        }
+
+        public Task<UserEntity> GetUserAsync(string name)
+        {
+            Requires.NotNull(name, nameof(name));
+            return _repository.GetUserByUserNameAsync(name);
         }
 
         public Task<UserInvokeResult> LoginAsync(string userName,string password)
@@ -53,7 +59,7 @@ namespace Sammo.Blog.Core.Services
         {
             Requires.NotNull(userNameOrEmail, nameof(userNameOrEmail));
             Requires.NotNull(password, nameof(password));
-            var user = await _repository.GetUserByUserNameAsync(userNameOrEmail);
+            var user = await _repository.GetUserByUserNameOrEmailAsync(userNameOrEmail);
             if(user == null)
                 return UserLoginInvokeResult.UserOrEmailNotFound;
 

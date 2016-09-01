@@ -1,15 +1,10 @@
-﻿using AutoMapper;
-using Microsoft.AspNet.Identity.Owin;
-using Sammo.Blog.Common;
+﻿using Sammo.Blog.Common;
 using Sammo.Blog.Core.Interfaces;
 using Sammo.Blog.Repository.Entities;
 using Sammo.Blog.Repository.Enums;
+using Sammo.Blog.Repository.Repositories.Interfaces;
 using Sammo.Blog.Web.Areas.Admin.ViewModels.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -19,8 +14,8 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
     public class AccountController : AdminBaseController
     {
         private readonly IAccountService _service;
-
-        public AccountController(IAccountService service)
+        private readonly IUserRepository _repository;
+        public AccountController(IAccountService service, IUserRepository repository) :base(repository)
         {
             this._service = service;
         }
@@ -88,6 +83,7 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
                 {
                     case UserLoginInvokeResult.Success:
                         FormsAuthentication.SetAuthCookie(model.UserNameOrEmail, model.RememberMe);
+                        
                         if (!string.IsNullOrEmpty(model.ReturnUrl))
                             return Redirect(model.ReturnUrl);
 
@@ -108,7 +104,7 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home", new { Area = "Admin" });
+            return RedirectToAction("Index", "Home");
         }
     }
 }

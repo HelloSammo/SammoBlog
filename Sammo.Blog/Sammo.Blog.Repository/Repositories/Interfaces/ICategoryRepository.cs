@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories.Interfaces
 {
-    public interface ICategoryRepository:IRepository<CategoryEntity>
+    public interface ICategoryRepository
     {
-
+        Task<bool> AddAsync(CategoryEntity category);
+        Task<bool> IsCategoryExistsAsync(string categoryName);
+        Task<IEnumerable<CategoryEntity>> GetAllAsync();
     }
 }

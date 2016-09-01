@@ -13,4 +13,12 @@ C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Common.pd
 C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Repository.pdb
 C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Autofac.xml
 C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\EntityFramework.xml
-C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Sammo.Blog.Core.dll.config
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll

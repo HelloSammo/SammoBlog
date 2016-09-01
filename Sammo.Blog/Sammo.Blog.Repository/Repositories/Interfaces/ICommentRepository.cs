@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories.Interfaces
 {
-    public interface ICommentRepository : IRepository<CommentEntity>
+    public interface ICommentRepository 
     {
         Task<int> CountCommentsByBlogAsync(BlogEntity blog);
 

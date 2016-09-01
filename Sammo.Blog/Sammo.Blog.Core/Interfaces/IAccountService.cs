@@ -16,6 +16,6 @@ namespace Sammo.Blog.Core.Interfaces
 
         Task<UserLoginInvokeResult> ValidateUserAsync(string userNameOrEmail, string password);
 
-        
+        Task<UserEntity> GetUserAsync(string name);
     }
 }

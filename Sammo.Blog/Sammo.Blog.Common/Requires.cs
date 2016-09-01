@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Common
 {
-    public static class Requires
+    public class Requires
     {
+        public static JsonData json = new JsonData(false);
         public static void NotNull<T>(T value, string parameterName) where T : class
         {
             if (value == null)
             {
-                throw new ArgumentNullException(parameterName);
+                throw new ArgumentNullException(parameterName + "不能为空");
+                //return json;
             }
         }
 

@@ -1,7 +1,9 @@
-﻿using Sammo.Blog.Repository.Entities;
+﻿using Sammo.Blog.Common;
+using Sammo.Blog.Repository.Entities;
 using Sammo.Blog.Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +12,16 @@ namespace Sammo.Blog.Repository.Repositories
 {
     public class CategoryRepository : DbContextService,ICategoryRepository
     {
-        public Task<bool> AddAsync(CategoryEntity t)
+        public async Task<bool> AddAsync(CategoryEntity category)
         {
-            throw new NotImplementedException();
+            Requires.NotNull(category, nameof(category));
+            var result = DbContext.Set<CategoryEntity>().Add(category);
+            if(result != null)
+            {
+                await DbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         public Task<bool> DeleteAsync(CategoryEntity t)
@@ -20,9 +29,15 @@ namespace Sammo.Blog.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<CategoryEntity>> GetAllAsync()
+        public async Task<IEnumerable<CategoryEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await DbContext.Set<CategoryEntity>().OrderBy(c=>c.CreateTime).ToListAsync();
+        }
+
+        public Task<bool> IsCategoryExistsAsync(string categoryName)
+        {
+            Requires.NotNullOrEmpty(categoryName, nameof(categoryName));
+            return DbContext.Set<CategoryEntity>().AnyAsync(u => u.Name == categoryName);
         }
 
         public Task<bool> UpdateAsync(CategoryEntity t)

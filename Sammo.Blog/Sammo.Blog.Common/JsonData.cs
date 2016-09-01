@@ -13,10 +13,8 @@ namespace Sammo.Blog.Common
 
         }
 
-        public JsonData(bool succeeded, string message, T data)
+        public JsonData(T data, string contentType = "application/json")
         {
-            Succeeded = succeeded;
-            Message = message;
             Data = data;
         }
 
@@ -26,5 +24,27 @@ namespace Sammo.Blog.Common
 
         public T Data { get; set; }
         
+    }
+
+    public class JsonData
+    {
+        public JsonData()
+        {
+
+        }
+
+        public JsonData(bool success, string message=null, object data =null, string contentType = "application/json")
+        {
+            Success = success;
+            Message = message ?? string.Empty;
+            Data = data ?? string.Empty;
+        }
+
+        public bool Success { get; set; }
+
+        public string Message { get; set; }
+
+        public object Data { get; set; }
+
     }
 }

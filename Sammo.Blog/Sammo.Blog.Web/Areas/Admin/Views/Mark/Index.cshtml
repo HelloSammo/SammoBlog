@@ -1,0 +1,106 @@
+﻿@using Sammo.Blog.Common
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    @Styles.Render("~/bundles/Static/Css/Shared/Plugin/toastr")    
+}
+
+@Html.Partial("_Navigation",new WebUIHelper("分类/标签"))
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>博客分类</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" id="categoryList">
+                <div class="input-group">
+                    <input type="text" class="form-control" v-model="categoryItem.name" id="categoryName" /> <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary" v-on:click="addCategory" id="addCategory">
+                            添加
+                        </button>
+                    </span>
+                </div>
+
+                <ul class="tag-list" style="padding: 0"  >
+                    <li v-for ="category in categories.Data">
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> {{category.Name}}</a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>博客标签</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <ul class="tag-list" style="padding: 0">
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 朋友</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 工作</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 家庭</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 孩子</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 假期</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 音乐</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 照片</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html"><i class="fa fa-tag"></i> 电影</a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/Static/Js/Vue")
+    @Scripts.Render("~/bundles/Static/Js/Mark/category")
+    
+    
+}

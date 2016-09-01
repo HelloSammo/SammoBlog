@@ -15,7 +15,7 @@ namespace Sammo.Blog.Repository.Entities
         public CategoryEntity()
         {
             Id = Guid.NewGuid().ToString();
-            CreationTime = DateTime.Now;
+            CreateTime = DateTime.Now;
         }
         [Key]
         public string Id { get; set; }
@@ -23,6 +23,11 @@ namespace Sammo.Blog.Repository.Entities
         [Required, StringLength(BlogConstants.Validation.CategoryNameLength)]
         public string Name { get; set; }
 
-        public DateTime CreationTime { get; set; }
+        [StringLength(BlogConstants.Validation.CategoryDescriptionLength)]
+        public string Description { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
+        public virtual ICollection<BlogEntity> Blogs { get; set; }
     }
 }

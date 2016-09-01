@@ -15,9 +15,9 @@ namespace Sammo.Blog.Repository.Entities
         public BlogEntity()
         {
             Id = Guid.NewGuid().ToString();
-            CreationTime = DateTime.Now;
+            CreateTime = DateTime.Now;
             IsTop = false;
-            VisitedAmount = 1;
+            PageViews = 1;
         }
         [Key]
         public string Id { get; set; }
@@ -29,19 +29,21 @@ namespace Sammo.Blog.Repository.Entities
         public string Article { get; set; }
 
         [Required]
-        public DateTime CreationTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
-        public int VisitedAmount { get; set; }
+        public int PageViews { get; set; }
 
         public bool IsTop { get; set; }
 
+        [Required]
         [StringLength(BlogConstants.Validation.GuidStringLength)]
-        public string UserId { get; set; }
+        public string AuthorId { get; set; }
 
+        [Required]
         [StringLength(BlogConstants.Validation.GuidStringLength)]
         public string CategoryId { get; set; }
 
-        public virtual UserEntity UserEntity { get; set; }
+        public virtual UserEntity Author { get; set; }
 
         public virtual CategoryEntity Category { get; set; }
 

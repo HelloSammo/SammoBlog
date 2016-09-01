@@ -1,0 +1,143 @@
+﻿@model Sammo.Blog.Web.Areas.Admin.ViewModels.Blog.AddBlogViewModel
+@{
+    ViewBag.Title = "撰写博客";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    @Styles.Render("~/bundles/Static/Css/Shared/Plugin/icheck")
+    @Styles.Render("~/bundles/Static/Css/Shared/Plugin/summernote")
+}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content mailbox-content">
+                    <div class="file-manager">
+                        <a class="btn btn-block btn-primary compose-mail" href="~/Admin/Blog/Add">添加随笔</a>
+                        <div class="space-25"></div>
+                        <h5>我的博客</h5>
+                        <ul class="folder-list m-b-md" style="padding: 0">
+                            <li>
+                                <a href="mailbox.html"> <i class="fa fa-certificate"></i> 置顶博客</a>
+                            </li>
+                            <li>
+                                <a href="mailbox.html">
+                                    <i class="fa fa-file-text-o"></i> 所有博客
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="fa">
+                            <h5>分类</h5>
+                            <ul class="tag-list" style="padding: 0" id="categoryList">
+                                <li v-for="category in categories.Data">
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> {{category.Name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fa">
+                            <h5 class="tag-title">标签</h5>
+                            <ul class="tag-list" style="padding: 0">
+
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 音乐</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 照片</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 电影</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @using (Html.BeginForm("Add", "Blog", FormMethod.Post,new { @class = "form-horizontal" }))
+        {
+            <div class="col-lg-9 animated fadeInRight">
+
+                <div class="mail-box-header">
+                    <div class="pull-right tooltip-demo">
+                        <a href="~/Admin/Blog/Add" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="放弃"><i class="fa fa-times"></i> 放弃</a>
+                    </div>
+                    <h2>
+                        添加随笔
+                    </h2>
+                </div>
+
+                <div class="mail-box">
+
+
+                    <div class="mail-body">
+                        @*<form class="form-horizontal" method="get">*@
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">博客标题：</label>
+                                <div class="col-sm-10">
+                                    @*<input type="text" class="form-control" value="" placeholder="新博客标题">*@
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "新博客标题" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">博客标签：</label>
+                                <div class="col-sm-10">
+                                    @*<input type="text" class="form-control" value="" placeholder="新博客标签">*@
+                                    @Html.TextBoxFor(m => m.TagNameString, new { @class = "form-control", placeholder = "新博客标题" })
+                                </div>
+                            </div>
+                        @*</form>*@
+                    </div>
+                    <div class="mail-text h-200">
+                        @*<div class="summernote">*@
+                        @*<h2>H+ 后台主题</h2>
+                            <p>H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本，当然，也集成了很多功能强大，用途广泛的国内外jQuery插件及其他组件，她可以用于所有的Web应用程序，如<b>网站管理后台</b>，<b>网站会员中心</b>，<b>CMS</b>，<b>CRM</b>，<b>OA</b>等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>*@
+                        @Html.TextAreaFor(m => m.Article, new { @class = "summernote" })
+                        @*</div>*@
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="mail-body text-right tooltip-demo">
+                        @Html.CheckBoxFor(m => m.IsTop, new { @class = "checkbox i-checks" })&nbsp;@Html.DisplayNameFor(m => m.IsTop)
+                        @*<a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> 发布</a>*@
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-reply"></i>发布</button>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/Static/Js/Vue")
+    @Scripts.Render("~/bundles/Static/Js/Mark/category")
+    @Scripts.Render("~/bundles/Static/Js/Shared/Plugin/icheck")
+    @Scripts.Render("~/bundles/Static/Js/Shared/Plugin/summernote")
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+            $('.summernote').summernote({
+                lang: 'zh-CN'
+            });
+
+        });
+        var edit = function () {
+            $('.click2edit').summernote({
+                focus: true
+            });
+        };
+        var save = function () {
+            var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+            $('.click2edit').destroy();
+        };
+    </script>
+}
+

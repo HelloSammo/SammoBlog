@@ -1,0 +1,66 @@
+﻿@model Sammo.Blog.Common.WebUIHelper
+
+@if (Model != null)
+{
+    if (Model.ThirdMenuText == null)
+    {
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>@Model.SecondMenuText</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="@Model.FirstMenuLink">@Model.FirstMenuText</a>
+                    </li>
+                    <li>
+                        <strong>@Model.SecondMenuText</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>@Model.ThirdMenuText</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="@Model.FirstMenuLink">@Model.FirstMenuText</a>
+                    </li>
+                    <li>
+                        <a>@Model.SecondMenuText</a>
+                    </li>
+                    <li>
+                        <strong>@Model.ThirdMenuText</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    }
+}
+else
+{
+    @Html.Partial("")
+}
+@*<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>表单验证</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">主页</a>
+            </li>
+            <li>
+                <a>表单</a>
+            </li>
+            <li>
+                <strong>表单验证</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>*@

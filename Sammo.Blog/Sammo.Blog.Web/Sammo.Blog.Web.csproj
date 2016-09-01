@@ -217,9 +217,13 @@
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MarkController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Account\RegisterViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Blog\AddBlogViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Mark\CategoryViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -253,6 +257,11 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_SkinConfig.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Temp.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Mark\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Navigation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Notification.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -269,24 +278,46 @@
     <Content Include="Static\Css\Shared\Bootstrap\bootstrap-rtl.css" />
     <Content Include="Static\Css\Shared\Bootstrap\bootstrap.min.css" />
     <Content Include="Static\Css\Shared\Bootstrap\font-awesome.css" />
+    <Content Include="Static\Css\Shared\Fonts\font-awesome.min.css" />
+    <Content Include="Static\Portal\CSS\Shared\bootstrap.min.css" />
+    <Content Include="Static\Portal\CSS\Shared\font-awesome.min.css" />
+    <Content Include="Static\Portal\CSS\Shared\rewrite-bootstrap.css" />
     <Content Include="Static\Css\Shared\Bootstrap\style.css" />
     <Content Include="Static\Css\Shared\Fonts\font-awesome.css" />
     <Content Include="Static\Css\Shared\Fonts\fontawesome-webfont.svg" />
-    <Content Include="Static\Css\Shared\Plugin\gritter\jquery.gritter.css" />
-    <Content Include="Static\Css\Shared\Plugin\icheck\custom.css" />
-    <Content Include="Static\Css\Shared\Plugin\icheck\green%402x.png" />
-    <Content Include="Static\Css\Shared\Plugin\icheck\green.png" />
-    <Content Include="Static\Css\Shared\Plugin\morris\morris-0.4.3.min.css" />
+    <Content Include="Static\Css\Shared\Plugins\gritter\jquery.gritter.css" />
+    <Content Include="Static\Css\Shared\Plugins\icheck\custom.css" />
+    <Content Include="Static\Css\Shared\Plugins\icheck\green%402x.png" />
+    <Content Include="Static\Css\Shared\Plugins\icheck\green.png" />
+    <Content Include="Static\Css\Shared\Plugins\morris\morris-0.4.3.min.css" />
+    <Content Include="Static\Css\Shared\Plugins\summernote\summernote-bs3.css" />
+    <Content Include="Static\Css\Shared\Plugins\summernote\summernote.css" />
+    <Content Include="Static\Css\Shared\Plugins\toastr\toastr.min.css" />
+    <Content Include="Static\Js\Shared\base.js" />
+    <Content Include="Static\Js\Blog\category.js" />
+    <Content Include="Static\Js\Mark\category.js" />
     <Content Include="Static\Js\Shared\Jquery\bootstrap.min.js" />
     <Content Include="Static\Js\Shared\Jquery\hplus.js" />
     <Content Include="Static\Js\Shared\Jquery\jquery-2.1.1.min.js" />
     <Content Include="Static\Js\Shared\Jquery\jquery-ui-1.10.4.min.js" />
     <Content Include="Static\Js\Shared\Jquery\jquery-ui.custom.min.js" />
-    <Content Include="Static\Js\Shared\Plugin\icheck\icheck.min.js" />
-    <Content Include="Static\Js\Shared\Plugin\metisMenu\jquery.metisMenu.js" />
-    <Content Include="Static\Js\Shared\Plugin\pace\pace.min.js" />
-    <Content Include="Static\Js\Shared\Plugin\slimscroll\jquery.slimscroll.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Static\Js\Shared\Jquery\jquery.min.js" />
+    <Content Include="Static\Js\Shared\notification.js" />
+    <Content Include="Static\Js\Shared\Plugins\icheck\icheck.min.js" />
+    <Content Include="Static\Js\Shared\Plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="Static\Js\Shared\Plugins\pace\pace.min.js" />
+    <Content Include="Static\Js\Shared\Plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Static\Js\Shared\Plugins\summernote\summernote-zh-CN.js" />
+    <Content Include="Static\Js\Shared\Plugins\summernote\summernote.min.js" />
+    <Content Include="Static\Js\Shared\Vue\vue-resource.js" />
+    <Content Include="Static\Js\Shared\Vue\vue-resource.min.js" />
+    <Content Include="Static\Js\Shared\Vue\vue.js" />
+    <Content Include="Static\Js\Shared\Vue\vue.min.js" />
+    <Content Include="Static\Portal\CSS\Shared\style.css" />
+    <Content Include="Static\Portal\Images\logo.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -295,7 +326,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -328,13 +358,17 @@
     <Content Include="Static\Css\Shared\Fonts\fontawesome-webfont.woff" />
     <Content Include="Static\Css\Shared\Fonts\fontawesome-webfont.woff2_v=4.3.0" />
     <Content Include="Static\Css\Shared\Fonts\fontawesome-webfont.woff_v=4.3.0" />
+    <Content Include="Views\Shared\HttpNotFound.cshtml" />
+    <Content Include="Views\Shared\ServerError.cshtml" />
+    <Content Include="Views\Shared\_RightPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\AdminBase\" />
-    <Folder Include="Areas\Admin\Views\Blog\" />
     <Folder Include="Static\Images\" />
+    <Folder Include="Static\Js\Shared\Mark\" />
+    <Folder Include="Static\Portal\JS\Shared\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

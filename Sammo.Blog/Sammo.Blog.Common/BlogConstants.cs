@@ -19,6 +19,14 @@ namespace Sammo.Blog.Common
             public const int UserNameLength = 15;
             public const int EmailLength = 50;
             public const int PasswordLength = 128;
+            public const int CategoryDescriptionLength = 100;
+
+            
+        }
+
+        public class Setting
+        {
+            public const int BlogsPerPage = 8;
         }
 
         public class Error
@@ -30,6 +38,8 @@ namespace Sammo.Blog.Common
             public const string UserNameExists = "此用户名已存在";
             public const string UserNotFound = "该用户不存在";
             public const string PasswordIncorrect = "密码不正确";
+            public const string CategoryExists = "此分类已存在";
+            public const string InvalidCategory = "此分类名无效";
         }
 
         public class Regex
@@ -42,6 +52,7 @@ namespace Sammo.Blog.Common
         public class Utils
         {
             public const int SaltSize = 24;
+            public const int CookieSaveDays = 14;
         }
     }
 }
