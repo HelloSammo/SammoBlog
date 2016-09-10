@@ -2,3 +2,7 @@ C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Common\bin\Debug\Sammo.Blog.Common.
 C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Common\bin\Debug\Sammo.Blog.Common.pdb
 C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Common\obj\Debug\Sammo.Blog.Common.dll
 C:\Users\Sammo\Desktop\Sammo.Blog\Sammo.Blog.Common\obj\Debug\Sammo.Blog.Common.pdb
+G:\Git\GitHub\Sammo.Blog\Sammo.Blog.Common\bin\Debug\Sammo.Blog.Common.dll
+G:\Git\GitHub\Sammo.Blog\Sammo.Blog.Common\bin\Debug\Sammo.Blog.Common.pdb
+G:\Git\GitHub\Sammo.Blog\Sammo.Blog.Common\obj\Debug\Sammo.Blog.Common.dll
+G:\Git\GitHub\Sammo.Blog\Sammo.Blog.Common\obj\Debug\Sammo.Blog.Common.pdb

@@ -13,7 +13,7 @@ using System.Web.Script.Serialization;
 namespace Sammo.Blog.Repository.Entities
 {
     [Table("User")]
-    public class UserEntity
+    public class UserEntity: EntityBase
     {
         public UserEntity()
         {

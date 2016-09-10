@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories
 {
-    public class UserRepository : DbContextService, IUserRepository
+    public class UserRepository : DbContextService<EntityBase>, IUserRepository
     {
         public async Task<bool> AddAsync(UserEntity user)
         {
-            Requires.NotNull(user, nameof(user));
             var result = DbContext.Set<UserEntity>().Add(user);
-            if(result != null)
-            {
-                await DbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
+            if (result == null)
+                return false;
+
+            await DbContext.SaveChangesAsync();
+            return true;
         }
 
         public Task<bool> DeleteAsync(UserEntity t)
@@ -47,33 +45,29 @@ namespace Sammo.Blog.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<UserEntity> GetUserByIdAsync(string id)
+        public  Task<UserEntity> GetUserByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return DbContext.Set<UserEntity>().FirstAsync(u => u.Id == id);
         }
 
         public Task<bool> IsEmailExistsAsync(string email)
         {
-            Requires.NotNullOrEmpty(email, nameof(email));
             return DbContext.Set<UserEntity>().AnyAsync(u => u.Email == email);
         }
 
         public Task<bool> IsUserNameExistsAsync(string userName)
         {
-            Requires.NotNullOrEmpty(userName, nameof(userName));
             return DbContext.Set<UserEntity>().AnyAsync(u => u.UserName == userName);
         }
 
         public Task<UserEntity> GetUserByUserNameOrEmailAsync(string userNameOrEmail)
         {
-            Requires.NotNullOrEmpty(userNameOrEmail, nameof(userNameOrEmail));
             return DbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserName == userNameOrEmail || u.Email == userNameOrEmail);
         }
 
         public Task<UserEntity> GetUserByUserNameAsync(string userName)
         {
-            Requires.NotNullOrEmpty(userName, nameof(userName));
-            return DbContext.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserName == userName);
+            return DbContext.Set<UserEntity>().AsNoTracking().FirstOrDefaultAsync(u => u.UserName == userName);
         }
     }
 }

@@ -10,18 +10,16 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories
 {
-    public class CategoryRepository : DbContextService,ICategoryRepository
+    public class CategoryRepository : DbContextService<EntityBase>,ICategoryRepository
     {
         public async Task<bool> AddAsync(CategoryEntity category)
         {
-            Requires.NotNull(category, nameof(category));
             var result = DbContext.Set<CategoryEntity>().Add(category);
-            if(result != null)
-            {
-                await DbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
+            if (result == null)
+                return false;
+
+            await DbContext.SaveChangesAsync();
+            return true;
         }
 
         public Task<bool> DeleteAsync(CategoryEntity t)
@@ -36,7 +34,6 @@ namespace Sammo.Blog.Repository.Repositories
 
         public Task<bool> IsCategoryExistsAsync(string categoryName)
         {
-            Requires.NotNullOrEmpty(categoryName, nameof(categoryName));
             return DbContext.Set<CategoryEntity>().AnyAsync(u => u.Name == categoryName);
         }
 

@@ -11,24 +11,20 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories
 {
-    public class TagRepository : DbContextService, ITagRepository
+    public class TagRepository : DbContextService<EntityBase>, ITagRepository
     {
         public async Task<bool> AddAsync(TagEntity tag)
         {
-            Requires.NotNull(tag, nameof(tag));
             var result = DbContext.Set<TagEntity>().Add(tag);
-            if (result != null)
-            {
-                //DbContext.Entry<TagEntity>(result).State = EntityState.Detached;
-                await DbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
+            if (result == null)
+                return false;
+            //DbContext.Entry<TagEntity>(result).State = EntityState.Detached;
+            await DbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<TagEntity> AddTagAsync(TagEntity tag)
         {
-            Requires.NotNull(tag, nameof(tag));
             var result = DbContext.Set<TagEntity>().Add(tag);
             if (result == null)
                 return null;
@@ -39,7 +35,6 @@ namespace Sammo.Blog.Repository.Repositories
 
         public async Task<bool> BulkAddAsync(IEnumerable<TagEntity> tags)
         {
-            Requires.NotNull(tags, nameof(tags));
             foreach (var tag in tags)
             {
                 if (DbContext.Set<TagEntity>().Add(tag) != null)

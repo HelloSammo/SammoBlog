@@ -14,7 +14,7 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
     public class AccountController : AdminBaseController
     {
         private readonly IAccountService _service;
-        private readonly IUserRepository _repository;
+        //private readonly IUserRepository _repository;
         public AccountController(IAccountService service, IUserRepository repository) :base(repository)
         {
             this._service = service;

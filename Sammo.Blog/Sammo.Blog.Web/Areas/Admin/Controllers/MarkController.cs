@@ -18,7 +18,7 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
     public class MarkController : AdminBaseController
     {
         private readonly ICategoryService _service;
-        private readonly IUserRepository _repository;
+        //private readonly IUserRepository _repository;
         public MarkController(ICategoryService service,IUserRepository repository):base(repository)
         {
             _service = service;

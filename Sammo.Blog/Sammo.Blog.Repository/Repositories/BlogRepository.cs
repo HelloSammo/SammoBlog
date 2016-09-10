@@ -11,20 +11,17 @@ using Sammo.Blog.Repository.General;
 
 namespace Sammo.Blog.Repository.Repositories
 {
-    public class BlogRepository: DbContextService, IBlogRepository
+    public class BlogRepository: DbContextService<EntityBase>, IBlogRepository
     {
         public async Task<bool> AddAsync(BlogEntity blog)
         {
-            Requires.NotNull(blog, nameof(blog));
             var result = DbContext.Set<BlogEntity>().Add(blog);
-            if(result != null)
-            {
-                //DbContext.Entry<BlogEntity>(result).State = EntityState.Detached;
-                await DbContext.SaveChangesAsync();
+            if (result == null)
+                return false;
+            //DbContext.Entry<BlogEntity>(result).State = EntityState.Detached;
+            await DbContext.SaveChangesAsync();
                 
-                return true;
-            }
-            return false;
+            return true;
         }
 
         public Task<bool> DeleteAsync(BlogEntity t)

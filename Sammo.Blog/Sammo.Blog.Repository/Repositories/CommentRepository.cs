@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sammo.Blog.Repository.Repositories
 {
-    public class CommentRepository : DbContextService,ICommentRepository
+    public class CommentRepository : DbContextService<EntityBase>,ICommentRepository
     {
         public Task<bool> AddAsync(CommentEntity t)
         {

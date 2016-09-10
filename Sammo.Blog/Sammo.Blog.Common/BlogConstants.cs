@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sammo.Blog.Common
+﻿namespace Sammo.Blog.Common
 {
     public sealed class BlogConstants
     {
@@ -20,12 +14,11 @@ namespace Sammo.Blog.Common
             public const int EmailLength = 50;
             public const int PasswordLength = 128;
             public const int CategoryDescriptionLength = 100;
-
-            
         }
 
         public class Setting
         {
+            public const string BlogDbConnection = "DbConnection";
             public const int BlogsPerPage = 8;
         }
 

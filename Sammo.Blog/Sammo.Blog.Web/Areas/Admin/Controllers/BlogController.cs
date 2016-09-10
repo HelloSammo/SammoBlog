@@ -44,8 +44,9 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
             model.CategoryId = "0be6b495-06e7-4f4f-b58b-54c549e5a2f6";
             if (ModelState.IsValid)
             {
+                var user = await _userRepository.GetUserByIdAsync(model.AuthorId);
                 var tagNames = model.TagNameString.Split(',');
-                await _tagService.AddAsync(model.TagNameString, CurrentUser);
+                await _tagService.AddAsync(model.TagNameString, user);
                 var tags = await _tagService.QueryAsync(t => t.Author.Id == CurrentUser.Id && tagNames.Contains(t.Name));
                 BlogEntity blog = new BlogEntity()
                 {

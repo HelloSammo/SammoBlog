@@ -1,8 +1,10 @@
-﻿using Sammo.Blog.Repository.EntityFramework;
+﻿using Sammo.Blog.Repository.Entities;
+using Sammo.Blog.Repository.EntityFramework;
+using System.Runtime.Remoting.Messaging;
 
 namespace Sammo.Blog.Repository
 {
-    public class DbContextService
+    public class DbContextService<T> where T: EntityBase
     {
         private static object obj = new object();
         protected IDbContext _DbContext;
@@ -10,21 +12,17 @@ namespace Sammo.Blog.Repository
         {
             get
             {
-                if (_DbContext == null)
+                _DbContext = CallContext.GetData(typeof(T).Name) as IDbContext;
+                if (_DbContext != null) return _DbContext as BlogDbContext;
+                lock (obj)
                 {
-                    lock(obj)
-                    {
-                        _DbContext = new BlogDbContext();
-                    }
-                    
+                    _DbContext = new BlogDbContext();
+                    CallContext.SetData(typeof(T).Name, _DbContext);
                 }
 
-                return _DbContext;
+                return _DbContext as BlogDbContext;
             }
-            set
-            {
-                _DbContext = value;
-            }
+            
         }
     }
 }

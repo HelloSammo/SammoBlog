@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Sammo.Blog.Repository.Entities
 {
     [Table("Tag")]
-    public class TagEntity
+    public class TagEntity: EntityBase
     {
         public TagEntity()
         {
