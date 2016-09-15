@@ -60,9 +60,9 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
                 };
 
                 if (await _blogService.AddAsync(blog))
-                    return Json(new JsonData() { Success = true, Message = "添加成功" });
+                    return Json(new JsonData() { State = true, Message = "添加成功" });
 
-                return Json(new JsonData { Success = false, Message = "添加失败" });
+                return Json(new JsonData { State = false, Message = "添加失败" });
             }
 
             return Json(model);

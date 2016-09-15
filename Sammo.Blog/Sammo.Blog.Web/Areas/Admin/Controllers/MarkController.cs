@@ -40,19 +40,19 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
             switch (result)
             {
                 case Repository.Enums.CategoryInvokeResult.Success:
-                    json.Success = true;
+                    json.State = true;
                     json.Message = "添加成功";
                     break;
                 case Repository.Enums.CategoryInvokeResult.Exists:
-                    json.Success = false;
+                    json.State = false;
                     json.Message = BlogConstants.Error.CategoryExists;
                     break;
                 case Repository.Enums.CategoryInvokeResult.InvalidName:
-                    json.Success = false;
+                    json.State = false;
                     json.Message = BlogConstants.Error.InvalidCategory;
                     break;
                 case Repository.Enums.CategoryInvokeResult.Failed:
-                    json.Success = false;
+                    json.State = false;
                     json.Message = "添加失败";
                     break;
             }
@@ -75,7 +75,7 @@ namespace Sammo.Blog.Web.Areas.Admin.Controllers
                         Description = c.Description
                     };
                 }),
-                Success = true
+                State = true
             };
             return Json(json);
         }

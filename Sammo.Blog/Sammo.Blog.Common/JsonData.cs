@@ -35,12 +35,12 @@ namespace Sammo.Blog.Common
 
         public JsonData(bool success, string message=null, object data =null, string contentType = "application/json")
         {
-            Success = success;
+            State = success;
             Message = message ?? string.Empty;
             Data = data ?? string.Empty;
         }
 
-        public bool Success { get; set; }
+        public bool State { get; set; }
 
         public string Message { get; set; }
 
